@@ -10,16 +10,28 @@
 
     <!-- Simple search form -->
     <form action="/" method="POST">
-
-        <input type="checkbox" id="cnbc" name="cnbc" value="cnbc">
-        <label for="cnbc">CNBC</label><br>
-        <input type="checkbox" id="the guardian" name="the guardian" value="the guardian">
-        <label for="the guardian">The Guardian</label><br>
-        <input type="checkbox" id="reuters" name="reuters" value="reuters">
-        <label for="reuters">Reuters</label><br>
-        <label for="search_query">Search:</label>
-        <input type="text" id="search_query" name="search_query" required>
+        <div>
+            <input type="checkbox" name="cnbc" {% if checked_state.cnbc %} checked {% endif %}>
+            <label for="cnbc">CNBC</label>
+        </div>
+    
+        <div>
+            <input type="checkbox" name="the_guardian" {% if checked_state.the_guardian %} checked {% endif %}>
+            <label for="the_guardian">The Guardian</label>
+        </div>
+    
+        <div>
+            <input type="checkbox" name="reuters" {% if checked_state.reuters %} checked {% endif %}>
+            <label for="reuters">Reuters</label>
+        </div>
+    
+        <div>
+            <label for="search_query">Search:</label>
+            <input type="text" id="search_query" name="search_query" required>
+        </div>
+    
         <button type="submit">Search</button>
+        
     </form>
 
     {% if results %}
@@ -30,6 +42,9 @@
                 <li>{{ result|safe }}</li>
             {% endfor %}
         </ul>
+    
+    {% else %}
+        <p>Your query did not match any documents.</p>
     {% endif %}
 </body>
 </html>
