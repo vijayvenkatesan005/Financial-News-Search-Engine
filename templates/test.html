@@ -34,17 +34,19 @@
         
     </form>
 
-    {% if results %}
-        <h3>Search Results:</h3>
-        <ul>
-            {% for result in results %}
-                <!-- Use the safe filter to render HTML properly -->
-                <li>{{ result|safe }}</li>
-            {% endfor %}
-        </ul>
-    
-    {% else %}
-        <p>Your query did not match any documents.</p>
+    {% if search_executed %}
+        {% if results %}
+            <h3>Search Results:</h3>
+            <ul>
+                {% for result in results %}
+                    <!-- Use the safe filter to render HTML properly -->
+                    <li>{{ result|safe }}</li>
+                {% endfor %}
+            </ul>
+        
+        {% else %}
+            <p>Your query did not match any documents.</p>
+        {% endif %}
     {% endif %}
 </body>
 </html>
