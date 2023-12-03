@@ -8,31 +8,56 @@
 <body>
     <h1>Search Page</h1>
 
-    <!-- Simple search form -->
     <form action="/" method="POST">
-        <div>
-            <input type="checkbox" name="cnbc" {% if checked_state.cnbc %} checked {% endif %}>
-            <label for="cnbc">CNBC</label>
-        </div>
-    
-        <div>
-            <input type="checkbox" name="the_guardian" {% if checked_state.the_guardian %} checked {% endif %}>
-            <label for="the_guardian">The Guardian</label>
-        </div>
-    
-        <div>
-            <input type="checkbox" name="reuters" {% if checked_state.reuters %} checked {% endif %}>
-            <label for="reuters">Reuters</label>
-        </div>
-    
-        <div>
-            <label for="search_query">Search:</label>
-            <input type="text" id="search_query" name="search_query" required>
-        </div>
-    
-        <button type="submit">Search</button>
-        
+        <button type="submit" name="news">News</button>
     </form>
+
+    <form action="/" method="POST">
+        <button type="submit" name="historical_data">Historical Data</button>
+    </form>    
+
+    {% if show_news_form %}
+
+        <!-- Simple search form -->
+        <form action="/" method="POST">
+            <div>
+                <input type="checkbox" name="cnbc" {% if checked_state.cnbc %} checked {% endif %}>
+                <label for="cnbc">CNBC</label>
+            </div>
+        
+            <div>
+                <input type="checkbox" name="the_guardian" {% if checked_state.the_guardian %} checked {% endif %}>
+                <label for="the_guardian">The Guardian</label>
+            </div>
+        
+            <div>
+                <input type="checkbox" name="reuters" {% if checked_state.reuters %} checked {% endif %}>
+                <label for="reuters">Reuters</label>
+            </div>
+        
+            <div>
+                <label for="search_query">Search:</label>
+                <input type="text" id="search_query" name="search_query" required>
+            </div>
+        
+            <input type="hidden" name="news_search" value="true">
+            <button type="submit">Search</button>
+            
+        </form>
+    
+    {% endif %}
+
+
+    {% if show_historical_data_form %}
+        <form action="/" method="POST">
+            <div>
+                <label for="historical_search_query">Search:</label>
+                <input type="text" id="historical_search_query" name="historical_search_query" required>
+            </div>
+            <input type="hidden" name="historical_data_search" value="true">
+            <button type="submit">Search</button>
+        </form>
+    {% endif %}
 
     {% if search_executed %}
         {% if results %}
