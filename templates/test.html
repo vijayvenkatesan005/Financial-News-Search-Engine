@@ -14,7 +14,37 @@
 
     <form action="/" method="POST">
         <button type="submit" name="historical_data">Historical Data</button>
-    </form>    
+    </form>
+    
+    <form action="/" method="POST">
+        <button type="submit" name="show_history">Search History</button>
+    </form>
+
+    {% if show_search_history %}
+        <h2>Search History:</h2>
+        {% if search_history %}
+            <ul>
+                {% for query in search_history %}
+                    <li>{{ query }}</li>
+                {% endfor %}
+            </ul>
+
+            <form action="/" method="POST">
+                <button type="submit" name="clear_history">Clear History</button>
+            </form>
+            
+        {% else %}
+                <p>No Search History Available.</p>
+        
+        {% endif %}
+    {% endif %}
+
+
+    {% if clear_search_history %}
+
+        <p>No Search History Available.</p>
+                
+    {% endif %}
 
     {% if show_news_form %}
 
